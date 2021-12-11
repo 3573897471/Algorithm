@@ -29,7 +29,8 @@ template<class T>
 void InsertSort(T*, int);
 template<class T>
 void ShellSort(T*, int);
-
+template<class T>
+void MergeSort(T*, int);
 
 
 int main() {
@@ -105,3 +106,8 @@ void ShellSort(T* Array, int len) {
     }
 }
 
+//归并排序
+template<class T>
+void MergeSort(T* Array, int len) {
+
+}
