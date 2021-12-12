@@ -33,9 +33,9 @@ template<class T>
 void MergeSort(T*, int);
 
 
-int main() {
+/*int main() {
     return 0;
-}
+}*/
 // 交换函数
 template<class T>
 void Swap (T& a, T& b) {
