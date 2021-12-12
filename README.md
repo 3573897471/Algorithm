@@ -1,5 +1,5 @@
 # Algorithm
-Something about Algorithm
+> Something about Algorithm
 
 ## 这里会更新一些常用的算法（模板类）
 ### 一、排序算法
