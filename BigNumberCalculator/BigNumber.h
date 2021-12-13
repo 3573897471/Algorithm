@@ -1,11 +1,11 @@
 //
 // Created by Administrator on 2021/12/13.
 //
-#pragma once
 #ifndef ALGORITHM_BIGNUMBER_H
 #define ALGORITHM_BIGNUMBER_H
 
 #include<string>
+#include<cstring>
 #include <iostream>
 using namespace std;
 class BigNumber {
@@ -28,9 +28,9 @@ public:
     //规格化输出:保留多少位小数
     void RemindDecimalShow(int count);
     //重载输出运算符
-    ostream& operator<<(const BigNumber& number);
+    friend ostream& operator<<(ostream& out, BigNumber& number);
     //重载输入运算符
-
+    friend istream& operator>>(istream& in, BigNumber& number);
 
 };
 #endif //ALGORITHM_BIGNUMBER_H
