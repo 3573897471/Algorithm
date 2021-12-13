@@ -29,12 +29,13 @@ template<class T>
 void InsertSort(T*, int);
 template<class T>
 void ShellSort(T*, int);
+template<class T>
+void MergeSort(T*, int);
 
 
-
-int main() {
+/*int main() {
     return 0;
-}
+}*/
 // 交换函数
 template<class T>
 void Swap (T& a, T& b) {
@@ -105,3 +106,8 @@ void ShellSort(T* Array, int len) {
     }
 }
 
+//归并排序
+template<class T>
+void MergeSort(T* Array, int len) {
+
+}
