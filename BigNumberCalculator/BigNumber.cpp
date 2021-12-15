@@ -6,8 +6,8 @@
 
 //构造函数
 BigNumber::BigNumber() {
-    //Integer = new string();
-    //Decimal = new string();
+    Integer = string();
+    Decimal = string();
 }
 
 BigNumber::BigNumber(const BigNumber &number) {
@@ -18,19 +18,22 @@ BigNumber::BigNumber(const BigNumber &number) {
 //重载加法运算符
 BigNumber BigNumber::operator+(const BigNumber number) {
     BigNumber temp;
-
+    return temp;
 }
 //重载减法运算符
 BigNumber BigNumber::operator-(const BigNumber number) {
-
+    BigNumber temp;
+    return temp;
 }
 //重载乘法运算符
 BigNumber BigNumber::operator*(const BigNumber number) {
-
+    BigNumber temp;
+    return temp;
 }
 //重载除法运算符
 BigNumber BigNumber::operator/(const BigNumber number) {
-
+    BigNumber temp;
+    return temp;
 }
 //规格化输出：保留多少位小数
 void BigNumber::RemindDecimalShow(int count) {
@@ -51,13 +54,46 @@ istream& operator>>(istream& in, BigNumber& number) {
     if (Input[0] == '-') number.Flag = false;
 
     int PointIndex = Input.find('.');
-
+    //整数处理
     if (PointIndex == -1) {
-
-    } else {
-
+        number.Integer = Input.substr(0, PointIndex);
+        number.Decimal = '0';
     }
-/*    //通过小数点来确定是什么类型输入
+    else {
+        //小数处理
+        number.Integer = Input.substr(0, PointIndex);
+        number.Decimal = Input.substr(PointIndex + 1, Input.length());
+    }
+
+    //对已经分割的整数和小数进行处理：规格化
+    //1、整数部分
+    int IntegerZeroIndex = -1;
+    for (int i = 0; i < number.Integer.length(); i++) {
+        if (number.Integer[i] == '0') IntegerZeroIndex = i;
+        else break;
+    }
+    if (IntegerZeroIndex == number.Integer.length() - 1) {
+        number.Integer = '0';
+    }
+    else if (IntegerZeroIndex != -1) {
+        number.Integer = number.Integer.substr(IntegerZeroIndex + 1, number.Integer.length());
+    }
+    //2、小数部分
+    int DecimalZeroIndex = number.Decimal.length();
+    for (int i = number.Decimal.length() - 1;i >= 0;i--) {
+        if (number.Decimal[i] == '0') DecimalZeroIndex = i;
+        else break;
+    }
+    if (DecimalZeroIndex == 0) {
+        number.Decimal = '0';
+    }
+    else if (DecimalZeroIndex != number.Decimal.length()) {
+        number.Decimal = number.Decimal.substr(0, DecimalZeroIndex);
+    }
+
+/*
+ *  旧版本：没有做到规格化多余的0，比如整数左边的0，小数右边的0
+    //通过小数点来确定是什么类型输入
     int PointIndex = Input.find('.');
     if (PointIndex == -1) {
         //整数情况
@@ -73,13 +109,14 @@ istream& operator>>(istream& in, BigNumber& number) {
         number.Decimal = Input.substr(PointIndex + 1, Input.length());
     }
     //如果是负数，则需要将负号删除，因为Flag已经记录了正负数信息
-    if (number.Integer[0] == '-') number.Integer = number.Integer.substr(1, number.Integer.length());*/
+    if (number.Integer[0] == '-') number.Integer = number.Integer.substr(1, number.Integer.length());
     //删除整数部分和小数部分多余的0
-/*    for (int i = 0;i < number.Integer.length();i++) {
+    for (int i = 0;i < number.Integer.length();i++) {
         if (number.Integer[i] == 0 && number.Integer.length() != 1)
             number.Integer = number.Integer.substr(i + 1, number.Integer.length());
         else break;
-    }*/
+    }
+*/
     return in;
 }
 
