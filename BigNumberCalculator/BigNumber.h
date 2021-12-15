@@ -12,7 +12,7 @@ class BigNumber {
 private:
     string Integer;
     string Decimal;
-
+    bool Flag = true;
 public:
     //构造函数
     BigNumber();
