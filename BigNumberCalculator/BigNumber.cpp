@@ -39,7 +39,7 @@ void BigNumber::RemindDecimalShow(int count) {
 //重载输出运算符
 ostream& operator<<(ostream& out, BigNumber& number) {
     if (! number.Flag) out << "-";
-    if (number.Decimal[0] == '0') out << number.Integer;
+    if (number.Decimal[number.Decimal.length() - 1] == '0') out << number.Integer;
     else out << number.Integer << "." << number.Decimal;
     return out;
 }
@@ -66,6 +66,12 @@ istream& operator>>(istream& in, BigNumber& number) {
     }
     //如果是负数，则需要将负号删除，因为Flag已经记录了正负数信息
     if (number.Integer[0] == '-') number.Integer = number.Integer.substr(1, number.Integer.length());
+    //删除整数部分和小数部分多余的0
+/*    for (int i = 0;i < number.Integer.length();i++) {
+        if (number.Integer[i] == 0 && number.Integer.length() != 1)
+            number.Integer = number.Integer.substr(i + 1, number.Integer.length());
+        else break;
+    }*/
     return in;
 }
 
@@ -73,10 +79,10 @@ istream& operator>>(istream& in, BigNumber& number) {
 void TestBigNumber() {
     BigNumber b1, b2;
     cin >> b1;
-    cin >> b2;
-    BigNumber b3 = b1 + b2;
+    //cin >> b2;
+    //BigNumber b3 = b1 + b2;
     cout << b1 << endl;
-    cout << b3 << endl;
+    //cout << b3 << endl;
 
 }
 
