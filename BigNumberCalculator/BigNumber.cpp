@@ -49,7 +49,15 @@ istream& operator>>(istream& in, BigNumber& number) {
     cin >> Input;
     //负数处理
     if (Input[0] == '-') number.Flag = false;
-    //通过小数点来确定是什么类型输入
+
+    int PointIndex = Input.find('.');
+
+    if (PointIndex == -1) {
+
+    } else {
+
+    }
+/*    //通过小数点来确定是什么类型输入
     int PointIndex = Input.find('.');
     if (PointIndex == -1) {
         //整数情况
@@ -65,7 +73,7 @@ istream& operator>>(istream& in, BigNumber& number) {
         number.Decimal = Input.substr(PointIndex + 1, Input.length());
     }
     //如果是负数，则需要将负号删除，因为Flag已经记录了正负数信息
-    if (number.Integer[0] == '-') number.Integer = number.Integer.substr(1, number.Integer.length());
+    if (number.Integer[0] == '-') number.Integer = number.Integer.substr(1, number.Integer.length());*/
     //删除整数部分和小数部分多余的0
 /*    for (int i = 0;i < number.Integer.length();i++) {
         if (number.Integer[i] == 0 && number.Integer.length() != 1)
