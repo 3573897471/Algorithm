@@ -15,7 +15,7 @@ BigNumber::BigNumber(const BigNumber &number) {
     Decimal = number.Decimal;
     Flag = number.Flag;
 }
-/*//重载加法运算符
+//重载加法运算符
 BigNumber BigNumber::operator+(const BigNumber number) {
 
 }
@@ -34,7 +34,7 @@ BigNumber BigNumber::operator/(const BigNumber number) {
 //规格化输出：保留多少位小数
 void BigNumber::RemindDecimalShow(int count) {
 
-}*/
+}
 //重载输出运算符
 ostream& operator<<(ostream& out, BigNumber& number) {
     if (! number.Flag) out << "-";
