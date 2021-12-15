@@ -13,6 +13,7 @@ BigNumber::BigNumber() {
 BigNumber::BigNumber(const BigNumber &number) {
     Integer = number.Integer;
     Decimal = number.Decimal;
+    Flag = number.Flag;
 }
 /*//重载加法运算符
 BigNumber BigNumber::operator+(const BigNumber number) {
@@ -42,17 +43,26 @@ ostream& operator<<(ostream& out, BigNumber& number) {
 //重载输入运算符
 istream& operator>>(istream& in, BigNumber& number) {
     string Input;
-    in >> Input;
-    int PointIndex = Input.find(".45");
-    cout << PointIndex <<endl;
-    number.Integer = Input.substr(0, PointIndex);
-    number.Decimal = Input.substr(PointIndex + 1, Input.length());
+    cin >> Input;
+    if (Input[0] == '-') number.Flag = false;
+    int PointIndex = Input.find('.');
+    if (PointIndex == -1) {
+        number.Integer = Input;
+        number.Decimal = '0';
+    } else if (Input[PointIndex - 1] == '0') {
+        number.Integer = '0';
+        number.Decimal = Input.substr(PointIndex + 1, Input.length());
+    } else {
+        number.Integer = Input.substr(0, PointIndex);
+        number.Decimal = Input.substr(PointIndex + 1, Input.length());
+    }
     return in;
 }
 
 
 void TestBigNumber() {
-    BigNumber b1;    cin >> b1;
+    BigNumber b1;
+    cin >> b1;
     cout << b1 << endl;
 
 }
