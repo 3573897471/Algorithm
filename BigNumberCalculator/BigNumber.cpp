@@ -66,7 +66,7 @@ istream& operator>>(istream& in, BigNumber& number) {
     }
 
     //对已经分割的整数和小数进行处理：规格化
-    //1、整数部分
+    //1、整数部分：左边多余的0以及全部是0的情况下的规格化
     int IntegerZeroIndex = -1;
     for (int i = 0; i < number.Integer.length(); i++) {
         if (number.Integer[i] == '0') IntegerZeroIndex = i;
@@ -78,7 +78,7 @@ istream& operator>>(istream& in, BigNumber& number) {
     else if (IntegerZeroIndex != -1) {
         number.Integer = number.Integer.substr(IntegerZeroIndex + 1, number.Integer.length());
     }
-    //2、小数部分
+    //2、小数部分：右边有0以及全部是0的情况下的规格化
     int DecimalZeroIndex = number.Decimal.length();
     for (int i = number.Decimal.length() - 1;i >= 0;i--) {
         if (number.Decimal[i] == '0') DecimalZeroIndex = i;
