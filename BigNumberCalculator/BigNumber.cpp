@@ -90,7 +90,7 @@ istream& operator>>(istream& in, BigNumber& number) {
     else if (DecimalZeroIndex != number.Decimal.length()) {
         number.Decimal = number.Decimal.substr(0, DecimalZeroIndex);
     }
-
+    return in;
 /*
  *  旧版本：没有做到规格化多余的0，比如整数左边的0，小数右边的0
     //通过小数点来确定是什么类型输入
@@ -117,7 +117,6 @@ istream& operator>>(istream& in, BigNumber& number) {
         else break;
     }
 */
-    return in;
 }
 
 
