@@ -64,7 +64,9 @@ istream& operator>>(istream& in, BigNumber& number) {
         number.Integer = Input.substr(0, PointIndex);
         number.Decimal = Input.substr(PointIndex + 1, Input.length());
     }
-
+    //整数有负号要去除
+    if (number.Integer[0] == '-')
+        number.Integer = number.Integer.substr(1,number.Integer.length());
     //对已经分割的整数和小数进行处理：规格化
     //1、整数部分：左边多余的0以及全部是0的情况下的规格化
     int IntegerZeroIndex = -1;
