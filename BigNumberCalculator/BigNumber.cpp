@@ -37,7 +37,33 @@ BigNumber BigNumber::operator/(const BigNumber number) {
 }
 //规格化输出：保留多少位小数
 void BigNumber::RemindDecimalShow(int count) {
-
+    int DecimalCount = this->Decimal.size();
+    if (DecimalCount == count) {
+        cout << *this;
+    } else if (DecimalCount > count) {
+        if (this->Decimal[count] >= 5) {
+            BigNumber temp;
+            temp.Integer = '0';
+            for (int i = 0; i < count - 1; i++)
+                temp.Decimal += '0';
+            temp.Decimal += '1';
+            temp = temp + *this;
+            cout << temp.Integer << '.';
+            for (int i = 0; i < count; i++)
+                cout << this->Decimal[i];
+            cout << "Coding !" << endl;
+        } else {
+            cout << this->Integer << '.';
+            for (int i = 0; i < count; i++)
+                cout << this->Decimal[i];
+        }
+    } else {
+        cout << *this;
+        for (int i = 0; i < count - DecimalCount; i++)
+            cout << '0';
+    }
+    cout << "\n";
+    return;
 }
 //重载输出运算符
 ostream& operator<<(ostream& out, BigNumber& number) {
@@ -128,6 +154,9 @@ void TestBigNumber() {
     //cin >> b2;
     //BigNumber b3 = b1 + b2;
     cout << b1 << endl;
+    b1.RemindDecimalShow(6);
+    b1.RemindDecimalShow(4);
+    b1.RemindDecimalShow(2);
     //cout << b3 << endl;
 
 }
