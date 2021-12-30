@@ -5,6 +5,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
 //测试数组
@@ -30,12 +32,26 @@ void InsertSort(T*, int);
 template<class T>
 void ShellSort(T*, int);
 template<class T>
-void MergeSort(T*, int);
+void MergeSort(vector<T>&, int, int);
 
 
-/*int main() {
+
+int main() {
+    ShowArray(Array, 10);
+    cout << "------------------------\n";
+    vector<int> v1(Array, Array + 10);
+    MergeSort(v1, 0, ArrayLen - 1);
+    int j = 0;
+    for (int i = 0; i < v1.size(); i++) {
+        cout << v1[i] << "\t";
+        if (j++ == 0) {
+            cout << "\n";
+            j = 0;
+        }
+    }
+    cout << "\n";
     return 0;
-}*/
+}
 // 交换函数
 template<class T>
 void Swap (T& a, T& b) {
@@ -108,6 +124,29 @@ void ShellSort(T* Array, int len) {
 
 //归并排序
 template<class T>
-void MergeSort(T* Array, int len) {
-
+void Merge(vector<T> &Array, int front, int mid, int end) {
+    vector<T> LeftSubArray(Array.begin(), Array.begin() + mid + 1);
+    vector<T> RightSubArray(Array.begin() + mid + 1, Array.end());
+    int LeftIndex = 0;
+    int RightIndex = 0;
+    LeftSubArray.insert(LeftSubArray.end(), numeric_limits<T>::max());
+    RightSubArray.insert(RightSubArray .end(),numeric_limits<T>::max());
+    for (int i = front; i <= end; i++) {
+        if (LeftSubArray[LeftIndex] < RightSubArray[RightIndex]) {
+            Array[i] = LeftSubArray[LeftIndex];
+            LeftIndex++;
+        } else {
+            Array[i] = RightSubArray[RightIndex];
+            RightIndex++;
+        }
+    }
+}
+template<class T>
+void MergeSort(vector<T>& Array, int front, int end) {
+    if (front >= end) return;
+    int mid = (end - front) / 2 + front;
+    MergeSort(Array, front, mid);
+    MergeSort(Array, mid + 1, end);
+    Merge(Array, front, mid, end);
+    return;
 }
