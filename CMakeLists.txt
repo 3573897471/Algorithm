@@ -4,4 +4,4 @@ project(Algorithm)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(Algorithm Sort.cpp
-               BigNumberCalculator/BigNumber.cpp BigNumberCalculator/BigNumber.h)
+               BigNumberCalculator/BigNumber.cpp BigNumberCalculator/BigNumber.h main.cpp)

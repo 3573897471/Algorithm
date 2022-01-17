@@ -158,10 +158,10 @@ void TestBigNumber() {
     b1.RemindDecimalShow(4);
     b1.RemindDecimalShow(2);
     //cout << b3 << endl;
-
 }
 
-//int main() {
-//    TestBigNumber();
-//    return 0;
-//}
+/*
+int main() {
+    TestBigNumber();
+    return 0;
+}*/
